@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Integrated Offline Edge AI Farming System — CODET FYP</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style type="text/tailwindcss">
+      @theme {
+        --color-navy: #1E2A38;
+        --color-green: #2E8B57;
+        --color-green-light: #DFF5E7;
+        --color-panel: #F5F7FA;
+        --color-gold: #D4AF37;
+        --font-title: "Montserrat", sans-serif;
+        --font-body: "Open Sans", sans-serif;
+      }
+      body {
+        background-color: #FFFFFF;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color: #1E2A38;
+      }
+      @media print {
+        @page {
+          size: 1920px 1080px;
+          margin: 0;
+        }
+        body {
+          margin: 0;
+          padding: 0;
+        }
+        section {
+          break-after: page;
+          page-break-after: always;
+          width: 1920px;
+          height: 1080px;
+          box-sizing: border-box;
+          overflow: hidden;
+          position: relative;
+          background-color: #FFFFFF;
+        }
+      }
+      @media screen {
+        section {
+          width: 1920px;
+          height: 1080px;
+          margin: 0 auto 1rem auto;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+          position: relative;
+          overflow: hidden;
+          background-color: #FFFFFF;
+        }
+      }
+      .green-glow {
+        box-shadow: 0 0 30px rgba(46, 139, 87, 0.35), 0 0 60px rgba(46, 139, 87, 0.12);
+      }
+      .line-vert {
+        width: 4px;
+        background-color: #2E8B57;
+        border-radius: 9999px;
+      }
+    </style>
+  </head>
+  <body class="antialiased font-body">
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 00 — COVER PAGE                                          -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <section class="relative flex flex-col items-center justify-center overflow-hidden">
+      <!-- Background image at 20% opacity -->
+      <img
+        src="images/fyp-ai-farm.jpg"
+        class="absolute inset-0 w-full h-full object-cover opacity-20 bg-white"
+        alt="AI + Agriculture"
+      />
+      <!-- White wash overlay for readability -->
+      <div class="absolute inset-0 bg-white/50"></div>
+
+      <!-- Gold accent line at top -->
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] h-[6px] bg-gold rounded-full"></div>
+
+      <div class="relative z-10 text-center max-w-[1550px] px-16">
+        <!-- Competition badge -->
+        <div class="mb-10">
+          <span class="text-2xl font-bold tracking-[0.3em] text-navy/50 uppercase font-title">CODET Project Competition</span>
+        </div>
+
+        <!-- Main Title -->
+        <h1 class="text-[64px] font-black text-navy leading-tight mb-12 font-title">
+          An Integrated Edge AI Framework<br />for Predictive Water Management<br />and Plant Health Assessment
+        </h1>
+
+        <!-- Green divider -->
+        <div class="w-[200px] h-[3px] bg-green mx-auto mb-14"></div>
+
+        <!-- Author info -->
+        <div class="space-y-2">
+          <p class="text-[28px] font-black text-navy font-title">Eguaikhide Victor Ohifueme</p>
+          <p class="text-[20px] text-navy/60">Department of Electrical / Electronics and Computer Engineering</p>
+          <p class="text-[20px] text-navy/60">Afe Babalola University, Ado-Ekiti</p>
+        </div>
+
+        <!-- Supervisor -->
+        <p class="text-[18px] text-navy/40 mt-8 italic">Supervisor: Dr. Monday Eyinagho</p>
+      </div>
+
+      <!-- Bottom accent bar -->
+      <div class="absolute bottom-0 left-0 right-0 h-[5px] bg-green"></div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 1 — THE PROBLEM                                          -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <section class="flex">
+      <!-- Slide number -->
+      <div class="absolute top-10 right-14 text-2xl font-bold text-navy/25 font-title tracking-wider z-10">01 / 07</div>
+
+      <!-- Left 55% -->
+      <div class="w-[55%] flex flex-col justify-center px-16 py-16">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="w-3 h-3 rounded-full bg-green"></span>
+          <span class="text-2xl font-bold text-green uppercase tracking-[0.22em] font-title">The Problem</span>
+        </div>
+
+        <h1 class="text-[66px] font-black text-navy leading-tight mb-10 font-title">
+          Agriculture Still Runs<br />on Guesswork
+        </h1>
+
+        <ul class="space-y-6">
+          <li class="flex items-start gap-5 text-[30px] font-semibold text-navy">
+            <span class="text-[42px] flex-shrink-0 leading-none">💧</span>
+            <span>Water is often wasted through reactive irrigation</span>
+          </li>
+          <li class="flex items-start gap-5 text-[30px] font-semibold text-navy">
+            <span class="text-[42px] flex-shrink-0 leading-none">🌱</span>
+            <span>Plant stress is detected too late</span>
+          </li>
+          <li class="flex items-start gap-5 text-[30px] font-semibold text-navy">
+            <span class="text-[42px] flex-shrink-0 leading-none">📶</span>
+            <span>Cloud smart systems fail without stable internet</span>
+          </li>
+          <li class="flex items-start gap-5 text-[30px] font-semibold text-navy">
+            <span class="text-[42px] flex-shrink-0 leading-none">📈</span>
+            <span>Food demand continues to rise</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right 45% — 3 stacked images -->
+      <div class="w-[45%] flex flex-col justify-center gap-5 pr-14">
+        <img
+          src="images/fyp-soil.jpg"
+          class="w-full h-[240px] object-cover rounded-3xl bg-green-light"
+          alt="Dry cracked soil"
+        />
+        <img
+          src="images/fyp-farmer.jpg"
+          class="w-full h-[240px] object-cover rounded-3xl bg-green-light"
+          alt="Farmer watering manually"
+        />
+        <img
+          src="images/fyp-signal.jpg"
+          class="w-full h-[240px] object-cover rounded-3xl bg-green-light"
+          alt="Weak signal over farmland"
+        />
+      </div>
+
+      <!-- Bottom Banner -->
+      <div class="absolute bottom-0 left-0 right-0 h-[72px] bg-green flex items-center px-16">
+        <p class="text-white text-[28px] font-semibold tracking-wide">
+          Traditional farming needs intelligent automation
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 2 — THE SOLUTION (System Architecture)                   -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <section class="flex flex-col items-center justify-center px-14 py-10">
+      <div class="absolute top-10 right-14 text-2xl font-bold text-navy/25 font-title tracking-wider z-10">02 / 07</div>
+
+      <div class="flex items-center gap-3 mb-5">
+        <span class="w-3 h-3 rounded-full bg-green"></span>
+        <span class="text-2xl font-bold text-green uppercase tracking-[0.22em] font-title">The Solution</span>
+      </div>
+
+      <h1 class="text-[52px] font-black text-navy text-center mb-12 font-title">
+        Integrated Offline Edge AI<br />Farming System
+      </h1>
+
+      <!-- System Diagram -->
+      <div class="flex items-center gap-10 w-full max-w-[1650px] justify-center">
+
+        <!-- Column 1 — Sensors -->
+        <div class="flex flex-col gap-3 items-center">
+          <div class="bg-panel border-2 border-navy/10 rounded-2xl px-10 py-5 text-center min-w-[220px]">
+            <span class="text-[34px]">🌡️</span>
+            <p class="text-[22px] font-bold text-navy mt-1 font-title">Soil Sensor</p>
+          </div>
+          <div class="flex items-center text-[28px] text-green font-bold">+</div>
+          <div class="bg-panel border-2 border-navy/10 rounded-2xl px-10 py-5 text-center min-w-[220px]">
+            <span class="text-[34px]">📷</span>
+            <p class="text-[22px] font-bold text-navy mt-1 font-title">Camera</p>
+          </div>
+          <div class="flex items-center text-[28px] text-green font-bold">+</div>
+          <div class="bg-panel border-2 border-navy/10 rounded-2xl px-10 py-5 text-center min-w-[220px]">
+            <span class="text-[34px]">🌤️</span>
+            <p class="text-[22px] font-bold text-navy mt-1 font-title">BME280</p>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div class="text-[52px] text-green font-black">→</div>
+
+        <!-- Column 2 — Raspberry Pi (centerpiece) -->
+        <div class="bg-green-light border-[4px] border-green green-glow rounded-[2.5rem] px-20 py-10 text-center">
+          <span class="text-[56px]">🖥️</span>
+          <h2 class="text-[38px] font-black text-navy font-title mt-1">Raspberry Pi 4</h2>
+          <p class="text-[24px] font-semibold text-green mt-2">Local AI Brain</p>
+          <p class="text-[20px] text-navy/50 mt-2 italic">Runs entirely on-device</p>
+        </div>
+
+        <!-- Arrow -->
+        <div class="text-[52px] text-green font-black">→</div>
+
+        <!-- Column 3 — Outputs -->
+        <div class="flex flex-col gap-3 items-center">
+          <div class="bg-panel border-2 border-green/30 rounded-2xl px-10 py-5 text-center min-w-[260px]">
+            <span class="text-[34px]">💧</span>
+            <p class="text-[22px] font-bold text-navy mt-1 font-title">Predictive Irrigation</p>
+            <p class="text-[16px] text-navy/50 mt-1">→ Pump Control</p>
+          </div>
+          <div class="bg-panel border-2 border-green/30 rounded-2xl px-10 py-5 text-center min-w-[260px]">
+            <span class="text-[34px]">👁️</span>
+            <p class="text-[22px] font-bold text-navy mt-1 font-title">Vision AI</p>
+            <p class="text-[16px] text-navy/50 mt-1">→ Dashboard</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Side callouts -->
+      <div class="absolute left-8 bottom-[160px] bg-green-light rounded-r-2xl px-5 py-3 border-l-4 border-green">
+        <p class="text-[20px] font-bold text-navy">✔ Predicts watering needs</p>
+      </div>
+      <div class="absolute right-8 bottom-[160px] bg-green-light rounded-l-2xl px-5 py-3 border-r-4 border-green">
+        <p class="text-[20px] font-bold text-navy">✔ Detects plant stress</p>
+      </div>
+
+      <!-- Bottom Banner -->
+      <div class="absolute bottom-0 left-0 right-0 h-[68px] bg-green flex items-center justify-center">
+        <p class="text-white text-[26px] font-semibold tracking-wide">
+          ✔ Works without internet — intelligence is processed locally, not remotely
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 3 — THE PROTOTYPE                                        -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <section class="relative flex flex-col items-center justify-center px-16 py-12">
+      <div class="absolute top-10 right-14 text-2xl font-bold text-navy/25 font-title tracking-wider z-10">03 / 07</div>
+
+      <div class="flex items-center gap-3 mb-8">
+        <span class="w-3 h-3 rounded-full bg-green"></span>
+        <span class="text-2xl font-bold text-green uppercase tracking-[0.22em] font-title">The Prototype</span>
+      </div>
+
+      <!-- Hardware photo -->
+      <div class="flex-1 flex items-center justify-center w-full max-w-[1550px]">
+        <img
+          src="images/fyp-prototype.jpg"
+          class="max-h-[680px] max-w-full object-contain rounded-[2rem] border-2 border-navy/10 shadow-lg bg-panel"
+          alt="Hardware prototype — Raspberry Pi, sensors, wiring"
+        />
+      </div>
+
+      <!-- Footer -->
+      <div class="mt-6">
+        <p class="text-[24px] text-navy/50 italic">Prototype currently in active integration phase</p>
+      </div>
+
+      <!-- Bottom accent bar -->
+      <div class="absolute bottom-0 left-0 right-0 h-[5px] bg-green"></div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 4 — INSIDE THE AI (Dual Engine Deep-Dive)                -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <section class="flex flex-col items-center justify-center px-16 py-12">
+      <div class="absolute top-10 right-14 text-2xl font-bold text-navy/25 font-title tracking-wider z-10">04 / 07</div>
+
+      <div class="flex items-center gap-3 mb-5">
+        <span class="w-3 h-3 rounded-full bg-green"></span>
+        <span class="text-2xl font-bold text-green uppercase tracking-[0.22em] font-title">How It Works</span>
+      </div>
+
+      <h1 class="text-[52px] font-black text-navy text-center mb-14 font-title">
+        Two AI Engines, One Device
+      </h1>
+
+      <!-- Two columns -->
+      <div class="flex gap-12 w-full max-w-[1680px] flex-1">
+
+        <!-- Left — Predictive Irrigation -->
+        <div class="flex-1 bg-panel rounded-[2.5rem] p-12 flex flex-col items-center justify-center text-center border border-navy/5">
+          <div class="w-[140px] h-[140px] rounded-full bg-green-light flex items-center justify-center mb-8 border-2 border-green/20">
+            <span class="text-[64px]">💧</span>
+          </div>
+          <h2 class="text-[36px] font-black text-navy font-title mb-8">Predictive Irrigation</h2>
+
+          <div class="space-y-5 text-left w-full max-w-[600px]">
+            <div class="flex items-start gap-4">
+              <span class="text-[28px] flex-shrink-0">📊</span>
+              <p class="text-[24px] font-semibold text-navy">Analyzes soil moisture, temperature &amp; humidity</p>
+            </div>
+            <div class="flex items-start gap-4">
+              <span class="text-[28px] flex-shrink-0">🧠</span>
+              <p class="text-[24px] font-semibold text-navy">On-device ML predicts water needs</p>
+            </div>
+            <div class="flex items-start gap-4">
+              <span class="text-[28px] flex-shrink-0">⏱️</span>
+              <p class="text-[24px] font-semibold text-navy">Schedules irrigation proactively</p>
+            </div>
+          </div>
+
+          <div class="mt-8 bg-navy rounded-2xl px-10 py-4 text-center">
+            <span class="text-[30px] mr-2">⚡</span>
+            <span class="text-[24px] font-bold text-white font-title">Pump Control</span>
+          </div>
+        </div>
+
+        <!-- Right — Vision AI -->
+        <div class="flex-1 bg-panel rounded-[2.5rem] p-12 flex flex-col items-center justify-center text-center border border-navy/5">
+          <div class="w-[140px] h-[140px] rounded-full bg-green-light flex items-center justify-center mb-8 border-2 border-green/20">
+            <span class="text-[64px]">👁️</span>
+          </div>
+          <h2 class="text-[36px] font-black text-navy font-title mb-8">Vision AI</h2>
+
+          <div class="space-y-5 text-left w-full max-w-[600px]">
+            <div class="flex items-start gap-4">
+              <span class="text-[28px] flex-shrink-0">📷</span>
+              <p class="text-[24px] font-semibold text-navy">Captures plant images periodically</p>
+            </div>
+            <div class="flex items-start gap-4">
+              <span class="text-[28px] flex-shrink-0">🤖</span>
+              <p class="text-[24px] font-semibold text-navy">On-device CV detects plant stress early</p>
+            </div>
+            <div class="flex items-start gap-4">
+              <span class="text-[28px] flex-shrink-0">🔔</span>
+              <p class="text-[24px] font-semibold text-navy">Alerts farmer instantly — no cloud needed</p>
+            </div>
+          </div>
+
+          <div class="mt-8 bg-navy rounded-2xl px-10 py-4 text-center">
+            <span class="text-[30px] mr-2">📊</span>
+            <span class="text-[24px] font-bold text-white font-title">Dashboard</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom callout -->
+      <div class="mt-10 text-center">
+        <p class="text-[26px] font-semibold text-navy/60 italic">
+          Both engines run simultaneously — on a single Raspberry Pi 4
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 5 — THE IMPACT                                           -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <section class="flex flex-col px-16 py-12">
+      <div class="absolute top-10 right-14 text-2xl font-bold text-navy/25 font-title tracking-wider z-10">05 / 07</div>
+
+      <div class="flex items-center gap-3 mb-5">
+        <span class="w-3 h-3 rounded-full bg-green"></span>
+        <span class="text-2xl font-bold text-green uppercase tracking-[0.22em] font-title">The Impact</span>
+      </div>
+
+      <h1 class="text-[54px] font-black text-navy text-center mb-12 font-title">
+        Real Impact for Nigeria,<br />Africa &amp; Beyond
+      </h1>
+
+      <!-- 5 Impact Cards -->
+      <div class="grid grid-cols-5 gap-7 flex-1">
+        <div class="bg-panel rounded-[2rem] px-6 py-10 flex flex-col items-center justify-center text-center border border-navy/5">
+          <div class="w-[110px] h-[110px] rounded-full bg-green-light flex items-center justify-center mb-5">
+            <span class="text-[54px]">💧</span>
+          </div>
+          <h3 class="text-[30px] font-black text-navy font-title mb-2">Saves Water</h3>
+          <p class="text-[20px] text-navy/55 font-semibold">Precision delivery, zero waste</p>
+        </div>
+
+        <div class="bg-panel rounded-[2rem] px-6 py-10 flex flex-col items-center justify-center text-center border border-navy/5">
+          <div class="w-[110px] h-[110px] rounded-full bg-green-light flex items-center justify-center mb-5">
+            <span class="text-[54px]">🌱</span>
+          </div>
+          <h3 class="text-[30px] font-black text-navy font-title mb-2">Improves Yield</h3>
+          <p class="text-[20px] text-navy/55 font-semibold">Healthier crops, higher output</p>
+        </div>
+
+        <div class="bg-panel rounded-[2rem] px-6 py-10 flex flex-col items-center justify-center text-center border border-navy/5">
+          <div class="w-[110px] h-[110px] rounded-full bg-green-light flex items-center justify-center mb-5">
+            <span class="text-[54px]">📶</span>
+          </div>
+          <h3 class="text-[30px] font-black text-navy font-title mb-2">No Internet Required</h3>
+          <p class="text-[20px] text-navy/55 font-semibold">Edge AI works offline anywhere</p>
+        </div>
+
+        <div class="bg-panel rounded-[2rem] px-6 py-10 flex flex-col items-center justify-center text-center border border-navy/5">
+          <div class="w-[110px] h-[110px] rounded-full bg-green-light flex items-center justify-center mb-5">
+            <span class="text-[54px]">💰</span>
+          </div>
+          <h3 class="text-[30px] font-black text-navy font-title mb-2">Low Cost</h3>
+          <p class="text-[20px] text-navy/55 font-semibold">Affordable hardware for all</p>
+        </div>
+
+        <div class="bg-panel rounded-[2rem] px-6 py-10 flex flex-col items-center justify-center text-center border border-navy/5">
+          <div class="w-[110px] h-[110px] rounded-full bg-green-light flex items-center justify-center mb-5">
+            <span class="text-[54px]">📈</span>
+          </div>
+          <h3 class="text-[30px] font-black text-navy font-title mb-2">Scalable</h3>
+          <p class="text-[20px] text-navy/55 font-semibold">From one plot to entire farms</p>
+        </div>
+      </div>
+
+      <!-- Bottom statement -->
+      <div class="mt-8 text-center">
+        <p class="text-[32px] italic text-navy/40 font-light">
+          Smart agriculture should be accessible, not exclusive.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 6 — WHY THIS SHOULD WIN                                  -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <section class="relative flex flex-col items-center justify-center px-16 py-14 overflow-hidden">
+      <div class="absolute top-10 right-14 text-2xl font-bold text-navy/25 font-title tracking-wider z-10">06 / 07</div>
+
+      <!-- Watermark background -->
+      <img
+        src="images/fyp-farm-bg.jpg"
+        class="absolute inset-0 w-full h-full object-cover opacity-[0.05] bg-white"
+        alt=""
+      />
+
+      <!-- Top label -->
+      <div class="flex items-center gap-3 mb-6 relative z-10">
+        <span class="w-3 h-3 rounded-full bg-green"></span>
+        <span class="text-2xl font-bold text-green uppercase tracking-[0.22em] font-title">Why This Project Should Represent CODET</span>
+      </div>
+
+      <h1 class="text-[60px] font-black text-navy text-center mb-14 relative z-10 font-title">
+        Built for Impact.<br />Built for the Future.
+      </h1>
+
+      <!-- 3×2 Grid -->
+      <div class="grid grid-cols-2 gap-7 max-w-[1400px] w-full relative z-10">
+        <div class="bg-green-light rounded-[2rem] px-12 py-9 flex items-center gap-8 border border-green/10">
+          <span class="text-[50px]">🤖</span>
+          <span class="text-[32px] font-black text-navy font-title">AI</span>
+        </div>
+        <div class="bg-panel rounded-[2rem] px-12 py-9 flex items-center gap-8 border border-navy/5">
+          <span class="text-[50px]">⚙️</span>
+          <span class="text-[32px] font-black text-navy font-title">Embedded Systems</span>
+        </div>
+        <div class="bg-panel rounded-[2rem] px-12 py-9 flex items-center gap-8 border border-navy/5">
+          <span class="text-[50px]">⚡</span>
+          <span class="text-[32px] font-black text-navy font-title">Automation</span>
+        </div>
+        <div class="bg-green-light rounded-[2rem] px-12 py-9 flex items-center gap-8 border border-green/10">
+          <span class="text-[50px]">🌍</span>
+          <span class="text-[32px] font-black text-navy font-title">Sustainability</span>
+        </div>
+        <div class="bg-panel rounded-[2rem] px-12 py-9 flex items-center gap-8 border border-navy/5">
+          <span class="text-[50px]">🌾</span>
+          <span class="text-[32px] font-black text-navy font-title">Agriculture</span>
+        </div>
+        <div class="bg-green-light rounded-[2rem] px-12 py-9 flex items-center gap-8 border border-green/10">
+          <span class="text-[50px]">📐</span>
+          <span class="text-[32px] font-black text-navy font-title">Scalability</span>
+        </div>
+      </div>
+
+      <!-- Quote -->
+      <div class="relative z-10 mt-12 text-center">
+        <p class="text-[40px] font-bold text-navy font-title italic">
+          Engineering intelligence where it is needed most.
+        </p>
+        <div class="w-[160px] h-1 bg-green mx-auto mt-3 rounded-full"></div>
+      </div>
+
+      <!-- Bottom accent bar -->
+      <div class="absolute bottom-0 left-0 right-0 h-[5px] bg-green"></div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 7 — THANK YOU                                            -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <section class="relative flex flex-col items-center justify-center overflow-hidden">
+      <div class="absolute top-10 right-14 text-2xl font-bold text-navy/25 font-title tracking-wider z-10">07 / 07</div>
+
+      <!-- Watermark background -->
+      <img
+        src="images/fyp-farm-bg.jpg"
+        class="absolute inset-0 w-full h-full object-cover opacity-[0.14] bg-white"
+        alt=""
+      />
+
+      <!-- Gold accent line at top -->
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] h-[6px] bg-gold rounded-full"></div>
+
+      <div class="relative z-10 text-center space-y-10">
+        <h1 class="text-[140px] font-black text-navy font-title leading-none">
+          Thank You
+        </h1>
+        <div class="w-[180px] h-2 bg-green mx-auto rounded-full"></div>
+        <p class="text-[40px] text-navy/50 font-light italic">
+          Engineering intelligence where it is needed most.
+        </p>
+      </div>
+
+      <!-- Bottom accent bar -->
+      <div class="absolute bottom-0 left-0 right-0 h-[5px] bg-green"></div>
+
+      <!-- QR Code -->
+      <div class="absolute bottom-10 right-14 z-10 flex flex-col items-center gap-2">
+        <img
+          src="images/fyp-qr.png"
+          class="w-[120px] h-[120px] rounded-xl bg-white p-2 border border-navy/10"
+          alt="QR code — GitHub profile"
+        />
+        <span class="text-[14px] font-semibold text-navy/40 uppercase tracking-wider">github.com/victorohis</span>
+      </div>
+    </section>
+
+  </body>
+</html>
