@@ -1,0 +1,708 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chapter 1: AI Image Generation</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style type="text/tailwindcss">
+      @theme {
+        --color-ai-dark: #050505;
+        --color-ai-gold: #fbbf24;
+        --color-ai-glow: #d4af37;
+        --font-sans: "Outfit", sans-serif;
+      }
+      body {
+        background-color: #050505;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color: #f8fafc;
+      }
+
+      /* --- STRICT 16:9 SLIDE ENGINE --- */
+      @media print {
+        @page {
+          size: 1920px 1080px;
+          margin: 0;
+        }
+        body {
+          margin: 0;
+          padding: 0;
+        }
+        section {
+          break-after: page;
+          page-break-after: always;
+          width: 1920px;
+          height: 1080px;
+          overflow: hidden;
+          position: relative;
+          box-sizing: border-box;
+          background-color: #050505;
+        }
+      }
+
+      @media screen {
+        section {
+          width: 1920px;
+          height: 1080px;
+          margin: 0 auto 2rem auto;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+          position: relative;
+          overflow: hidden;
+          background-color: #050505;
+        }
+      }
+
+      /* Premium Background Gradients */
+      .bg-cinematic {
+        background: radial-gradient(circle at center, #1e293b 0%, #050505 100%);
+      }
+      .bg-overlay {
+        background: linear-gradient(
+          to top,
+          rgba(5, 5, 5, 1) 0%,
+          rgba(5, 5, 5, 0.2) 100%
+        );
+      }
+      .gold-glow {
+        text-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
+      }
+
+      /* Playwright-safe Naira font */
+      .naira {
+        font-family: Arial, sans-serif;
+      }
+    </style>
+  </head>
+  <body class="antialiased font-sans">
+    <section
+      class="flex flex-col items-center justify-center text-center relative overflow-hidden"
+    >
+      <img
+        src="images/slide1-bg.jpg"
+        class="absolute inset-0 w-full h-full object-cover opacity-20"
+      />
+      <div class="relative z-10 space-y-8">
+        <h2
+          class="text-ai-gold text-[40px] tracking-[0.5em] font-bold uppercase gold-glow"
+        >
+          Chapter 1
+        </h2>
+        <h1
+          class="text-white text-[120px] font-black leading-tight max-w-[1600px]"
+        >
+          What Is AI Image Generation <br /><span
+            class="text-slate-400 font-light"
+            >& What's Possible</span
+          >
+        </h1>
+      </div>
+    </section>
+
+    <section class="relative">
+      <img
+        src="images/slide2-reaction.jpg"
+        class="absolute inset-0 w-full h-full object-cover opacity-50"
+      />
+      <div
+        class="absolute inset-0 bg-overlay flex items-end pb-32 justify-center"
+      >
+        <h1
+          class="text-[90px] font-black text-white tracking-tight drop-shadow-2xl"
+        >
+          "Did an AI really make that?"
+        </h1>
+      </div>
+    </section>
+
+    <section class="flex bg-cinematic">
+      <div class="w-1/2 flex flex-col justify-center p-24">
+        <div
+          class="bg-slate-900 border border-slate-700 p-12 rounded-[2rem] shadow-2xl"
+        >
+          <p class="text-[50px] font-mono text-ai-gold typing-effect">
+            /imagine prompt: A futuristic city at sunset, neon lights, highly
+            detailed...
+          </p>
+        </div>
+      </div>
+      <div class="w-1/2 relative flex items-center justify-center bg-slate-800">
+        <img
+          src="images/slide3-generated.jpg"
+          class="w-full h-full object-cover"
+        />
+        <div
+          class="absolute inset-0 bg-black/40 flex items-center justify-center"
+        >
+          <div
+            class="bg-black/70 backdrop-blur-md px-16 py-8 rounded-[3rem] border border-white/10 text-center"
+          >
+            <h2 class="text-[60px] font-black text-white">You Type Words.</h2>
+            <h2 class="text-[50px] font-bold text-ai-gold">
+              AI Creates the Visual.
+            </h2>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="flex flex-col p-16 bg-cinematic relative">
+      <h2 class="text-[65px] font-black text-center mb-12 text-white">
+        AI Image Generation Is Bigger Than You Think.
+      </h2>
+      <div class="grid grid-cols-3 grid-rows-2 gap-8 h-full pb-16">
+        <img
+          src="images/grid1.jpg"
+          class="w-full h-full object-cover rounded-[2rem] bg-slate-800"
+        />
+        <img
+          src="images/grid2.jpg"
+          class="w-full h-full object-cover rounded-[2rem] bg-slate-800"
+        />
+        <img
+          src="images/grid3.jpg"
+          class="w-full h-full object-cover rounded-[2rem] bg-slate-800"
+        />
+        <img
+          src="images/grid4.jpg"
+          class="w-full h-full object-cover rounded-[2rem] bg-slate-800"
+        />
+        <img
+          src="images/grid5.jpg"
+          class="w-full h-full object-cover rounded-[2rem] bg-slate-800"
+        />
+        <img
+          src="images/grid6.jpg"
+          class="w-full h-full object-cover rounded-[2rem] bg-slate-800"
+        />
+      </div>
+    </section>
+
+    <section class="relative">
+      <img
+        src="images/slide5-fashion.jpg"
+        class="absolute inset-0 w-full h-full object-cover object-top bg-slate-800"
+      />
+      <div
+        class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center"
+      >
+        <div
+          class="border-4 border-ai-gold p-16 rounded-[2rem] backdrop-blur-sm bg-black/30 text-center"
+        >
+          <h1
+            class="text-[90px] font-black text-white uppercase tracking-widest leading-tight"
+          >
+            No Camera.<br />No Model.<br />No Studio.
+          </h1>
+        </div>
+      </div>
+    </section>
+
+    <section class="flex flex-col p-16 bg-cinematic">
+      <div class="text-center mb-12">
+        <h2 class="text-[70px] font-black text-white">Art Without a Brush.</h2>
+        <p class="text-[45px] font-semibold text-ai-gold">
+          Any Style. Any Vision.
+        </p>
+      </div>
+      <div class="flex gap-6 h-full pb-16">
+        <div
+          class="w-1/4 relative rounded-[2rem] overflow-hidden border-2 border-slate-700 bg-slate-800"
+        >
+          <img src="images/style-oil.jpg" class="w-full h-full object-cover" />
+          <div
+            class="absolute bottom-6 left-6 bg-black/80 px-6 py-2 rounded-xl text-3xl font-bold"
+          >
+            Oil Painting
+          </div>
+        </div>
+        <div
+          class="w-1/4 relative rounded-[2rem] overflow-hidden border-2 border-slate-700 bg-slate-800"
+        >
+          <img
+            src="images/style-water.jpg"
+            class="w-full h-full object-cover"
+          />
+          <div
+            class="absolute bottom-6 left-6 bg-black/80 px-6 py-2 rounded-xl text-3xl font-bold"
+          >
+            Watercolor
+          </div>
+        </div>
+        <div
+          class="w-1/4 relative rounded-[2rem] overflow-hidden border-2 border-slate-700 bg-slate-800"
+        >
+          <img
+            src="images/style-anime.jpg"
+            class="w-full h-full object-cover"
+          />
+          <div
+            class="absolute bottom-6 left-6 bg-black/80 px-6 py-2 rounded-xl text-3xl font-bold"
+          >
+            Anime
+          </div>
+        </div>
+        <div
+          class="w-1/4 relative rounded-[2rem] overflow-hidden border-2 border-slate-700 bg-slate-800"
+        >
+          <img
+            src="images/style-hyper.jpg"
+            class="w-full h-full object-cover"
+          />
+          <div
+            class="absolute bottom-6 left-6 bg-black/80 px-6 py-2 rounded-xl text-3xl font-bold"
+          >
+            Hyperrealism
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="flex flex-col items-center justify-center bg-[#0a0a0a] text-center p-20"
+    >
+      <div class="flex gap-12 mb-20 w-full justify-center">
+        <div
+          class="w-[400px] h-[500px] bg-slate-800 rounded-[2rem] border border-slate-600 flex items-center justify-center shadow-2xl"
+        >
+          <span class="text-4xl font-bold text-slate-500">Product Mockup</span>
+        </div>
+        <div
+          class="w-[400px] h-[500px] bg-slate-800 rounded-[2rem] border border-slate-600 flex items-center justify-center shadow-2xl"
+        >
+          <span class="text-4xl font-bold text-slate-500">Movie Poster</span>
+        </div>
+        <div
+          class="w-[400px] h-[500px] bg-slate-800 rounded-[2rem] border border-slate-600 flex items-center justify-center shadow-2xl"
+        >
+          <span class="text-4xl font-bold text-slate-500">Book Cover</span>
+        </div>
+      </div>
+      <h1 class="text-[90px] font-black text-white leading-none mb-6">
+        Design Without Software.
+      </h1>
+      <h2 class="text-[55px] font-light text-ai-gold italic">
+        Just describe it.
+      </h2>
+    </section>
+
+    <section
+      class="flex flex-col items-center justify-center bg-cinematic text-center p-20"
+    >
+      <div class="flex items-center gap-16 mb-20">
+        <div
+          class="w-[400px] h-[400px] rounded-full overflow-hidden border-8 border-slate-700 bg-slate-800"
+        >
+          <img
+            src="images/slide8-image.jpg"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <span class="text-[100px] text-ai-gold">➔</span>
+        <div class="flex flex-col gap-4">
+          <div
+            class="bg-slate-800 px-10 py-6 rounded-2xl text-4xl font-bold border border-slate-600"
+          >
+            Runway ML
+          </div>
+          <div
+            class="bg-slate-800 px-10 py-6 rounded-2xl text-4xl font-bold border border-slate-600"
+          >
+            Kling AI
+          </div>
+        </div>
+        <span class="text-[100px] text-ai-gold">➔</span>
+        <div
+          class="w-[400px] h-[400px] rounded-[3rem] overflow-hidden border-8 border-ai-gold relative bg-slate-800"
+        >
+          <img
+            src="images/slide8-video.jpg"
+            class="w-full h-full object-cover opacity-80"
+          />
+          <div
+            class="absolute inset-0 flex items-center justify-center text-[100px]"
+          >
+            ▶
+          </div>
+        </div>
+      </div>
+      <h2 class="text-[65px] font-black text-white">Images Become Videos.</h2>
+      <p class="text-[45px] text-slate-400 font-medium">
+        Master One, You're Halfway to the Other.
+      </p>
+    </section>
+
+    <section
+      class="relative bg-cinematic flex flex-col items-center justify-center"
+    >
+      <div class="absolute inset-0 grid grid-cols-5 opacity-40">
+        <img
+          src="images/possibility1.jpg"
+          class="w-full h-full object-cover bg-slate-800"
+        />
+        <img
+          src="images/possibility2.jpg"
+          class="w-full h-full object-cover bg-slate-800"
+        />
+        <img
+          src="images/possibility3.jpg"
+          class="w-full h-full object-cover bg-slate-800"
+        />
+        <img
+          src="images/possibility4.jpg"
+          class="w-full h-full object-cover bg-slate-800"
+        />
+        <img
+          src="images/possibility5.jpg"
+          class="w-full h-full object-cover bg-slate-800"
+        />
+      </div>
+      <div
+        class="relative z-10 bg-black/80 backdrop-blur-lg px-24 py-16 rounded-[4rem] border border-slate-700 text-center shadow-[0_0_50px_rgba(0,0,0,0.8)]"
+      >
+        <h1 class="text-[90px] font-black text-white mb-4">One Skill.</h1>
+        <h2 class="text-[70px] font-bold text-ai-gold">
+          Infinite Possibilities.
+        </h2>
+      </div>
+    </section>
+
+    <section
+      class="flex flex-col items-center justify-center text-center p-20 bg-[#0f172a]"
+    >
+      <div
+        class="w-[500px] h-[500px] mb-12 bg-slate-800 rounded-full flex items-center justify-center border-[10px] border-ai-gold overflow-hidden"
+      >
+        <img
+          src="images/slide10-director.jpg"
+          class="w-full h-full object-cover"
+        />
+      </div>
+      <h1 class="text-[80px] font-black text-white">
+        You Are the <span class="text-ai-gold">Director</span>.
+      </h1>
+      <h2 class="text-[60px] font-bold text-slate-400">AI Is the Crew.</h2>
+    </section>
+
+    <section
+      class="relative bg-black flex items-center justify-center text-center"
+    >
+      <img
+        src="images/slide11-money.jpg"
+        class="absolute inset-0 w-full h-full object-cover opacity-30 blur-sm bg-slate-900"
+      />
+      <div class="relative z-10 flex flex-col items-center">
+        <div
+          class="flex gap-16 mb-12 text-[150px] font-black text-[#22c55e] drop-shadow-[0_0_30px_rgba(34,197,94,0.5)]"
+        >
+          <span class="naira">&#8358;</span><span>$</span>
+        </div>
+        <h1
+          class="text-[75px] font-black text-white max-w-[1500px] leading-tight bg-black/60 p-12 rounded-[3rem] backdrop-blur-sm border border-slate-800"
+        >
+          Every Image AI Can Generate — <br /><span class="text-ai-gold"
+            >Someone Is Willing to Pay For.</span
+          >
+        </h1>
+      </div>
+    </section>
+
+    <section class="bg-cinematic flex flex-col p-20">
+      <h2 class="text-[80px] font-black text-center text-white mb-20 mt-10">
+        The Demand for Visuals Never Stops.
+      </h2>
+      <div class="grid grid-cols-4 gap-12 h-full">
+        <div
+          class="bg-slate-900 border border-slate-700 rounded-[2rem] p-10 text-center flex flex-col items-center justify-center shadow-xl"
+        >
+          <span class="text-7xl mb-6">👗</span>
+          <h3 class="text-4xl font-bold text-white mb-4">Fashion Brand</h3>
+          <p class="text-2xl text-ai-gold">Needs Lookbooks</p>
+        </div>
+        <div
+          class="bg-slate-900 border border-slate-700 rounded-[2rem] p-10 text-center flex flex-col items-center justify-center shadow-xl"
+        >
+          <span class="text-7xl mb-6">📱</span>
+          <h3 class="text-4xl font-bold text-white mb-4">Content Creator</h3>
+          <p class="text-2xl text-ai-gold">Needs Thumbnails</p>
+        </div>
+        <div
+          class="bg-slate-900 border border-slate-700 rounded-[2rem] p-10 text-center flex flex-col items-center justify-center shadow-xl"
+        >
+          <span class="text-7xl mb-6">📖</span>
+          <h3 class="text-4xl font-bold text-white mb-4">Author</h3>
+          <p class="text-2xl text-ai-gold">Needs Covers</p>
+        </div>
+        <div
+          class="bg-slate-900 border border-slate-700 rounded-[2rem] p-10 text-center flex flex-col items-center justify-center shadow-xl"
+        >
+          <span class="text-7xl mb-6">🎉</span>
+          <h3 class="text-4xl font-bold text-white mb-4">Event Planner</h3>
+          <p class="text-2xl text-ai-gold">Needs Concepts</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="flex bg-[#050505]">
+      <div class="w-1/2 p-20 flex flex-col justify-center">
+        <h1 class="text-[85px] font-black text-white leading-tight mb-8">
+          Generate.<br />List.<br />Earn.
+        </h1>
+        <p
+          class="text-[50px] font-bold text-ai-gold bg-slate-900 inline-block px-8 py-4 rounded-2xl self-start border border-slate-700"
+        >
+          No Shipping Required.
+        </p>
+      </div>
+      <div
+        class="w-1/2 relative bg-slate-900 border-l border-slate-800 p-16 flex items-center justify-center"
+      >
+        <div class="grid grid-cols-2 gap-6 w-full h-[700px]">
+          <img
+            src="images/gallery1.jpg"
+            class="w-full h-full object-cover border-[10px] border-black shadow-2xl bg-slate-800"
+          />
+          <img
+            src="images/gallery2.jpg"
+            class="w-full h-full object-cover border-[10px] border-black shadow-2xl bg-slate-800"
+          />
+        </div>
+        <div
+          class="absolute bottom-24 right-24 bg-green-500 text-white px-8 py-4 rounded-full text-3xl font-bold shadow-2xl flex items-center gap-4"
+        >
+          <span>🔔</span> Sale Notification:
+          <span class="naira">&#8358;</span>15,000
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="flex flex-col items-center justify-center bg-cinematic text-center p-20"
+    >
+      <div class="flex items-center justify-center gap-12 mb-16">
+        <div
+          class="w-[300px] h-[400px] bg-slate-800 rounded-[2rem] border-2 border-slate-600 flex items-center justify-center overflow-hidden"
+        >
+          <img
+            src="images/slide14-stock.jpg"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <span class="text-[80px] text-slate-500">➔</span>
+        <div
+          class="w-[300px] h-[300px] bg-slate-900 rounded-full border-4 border-green-500 flex flex-col items-center justify-center shadow-[0_0_40px_rgba(34,197,94,0.3)]"
+        >
+          <span class="text-[80px]">🔄</span>
+          <span class="text-3xl font-bold text-green-400 mt-2">Recurring</span>
+        </div>
+      </div>
+      <h1 class="text-[90px] font-black text-white mb-4">
+        Upload Once. Get Paid Many Times.
+      </h1>
+      <h2 class="text-[55px] font-medium text-ai-gold">
+        Stock images. Passive income.
+      </h2>
+    </section>
+
+    <section class="flex flex-col text-center">
+      <div class="flex h-[750px] w-full">
+        <div
+          class="w-1/2 bg-slate-900 p-20 flex flex-col justify-center items-center border-r border-slate-800 relative"
+        >
+          <img
+            src="images/slide15-stressed.jpg"
+            class="absolute inset-0 w-full h-full object-cover opacity-20 grayscale bg-slate-900"
+          />
+          <div class="relative z-10">
+            <span class="text-[100px] block mb-8">💸 😩</span>
+            <h3 class="text-[50px] font-bold text-slate-300">
+              Stressed, Searching, Spending
+            </h3>
+          </div>
+        </div>
+        <div
+          class="w-1/2 bg-[#0a1914] p-20 flex flex-col justify-center items-center relative"
+        >
+          <img
+            src="images/slide15-calm.jpg"
+            class="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-overlay bg-[#0a1914]"
+          />
+          <div class="relative z-10">
+            <span class="text-[100px] block mb-8">⚡ 😎</span>
+            <h3 class="text-[50px] font-bold text-green-400">
+              Calm, Generating, Saving
+            </h3>
+          </div>
+        </div>
+      </div>
+      <div
+        class="bg-black flex-1 flex flex-col items-center justify-center border-t border-slate-800"
+      >
+        <h1 class="text-[75px] font-black text-white">
+          Stop Paying for Visuals.
+          <span class="text-ai-gold">Start Creating Them.</span>
+        </h1>
+      </div>
+    </section>
+
+    <section
+      class="bg-cinematic flex flex-col p-20 items-center justify-center"
+    >
+      <h1 class="text-[70px] font-black text-white mb-24">
+        The Course Roadmap
+      </h1>
+      <div
+        class="flex items-center justify-between w-full max-w-[1700px] relative"
+      >
+        <div
+          class="absolute top-1/2 left-0 w-full h-2 bg-slate-700 -translate-y-1/2 z-0"
+        ></div>
+
+        <div class="relative z-10 flex flex-col items-center gap-6">
+          <div
+            class="w-32 h-32 rounded-full bg-slate-900 border-4 border-ai-gold flex items-center justify-center text-5xl shadow-[0_0_30px_rgba(251,191,36,0.3)]"
+          >
+            1
+          </div>
+          <span class="text-4xl font-bold text-white">Tools</span>
+        </div>
+        <div class="relative z-10 flex flex-col items-center gap-6">
+          <div
+            class="w-32 h-32 rounded-full bg-slate-900 border-4 border-ai-gold flex items-center justify-center text-5xl"
+          >
+            2
+          </div>
+          <span class="text-4xl font-bold text-white">Prompts</span>
+        </div>
+        <div class="relative z-10 flex flex-col items-center gap-6">
+          <div
+            class="w-32 h-32 rounded-full bg-slate-900 border-4 border-ai-gold flex items-center justify-center text-5xl"
+          >
+            3
+          </div>
+          <span class="text-4xl font-bold text-white">Platforms</span>
+        </div>
+        <div class="relative z-10 flex flex-col items-center gap-6">
+          <div
+            class="w-32 h-32 rounded-full bg-slate-900 border-4 border-ai-gold flex items-center justify-center text-5xl"
+          >
+            4
+          </div>
+          <span class="text-4xl font-bold text-white">Image Types</span>
+        </div>
+        <div class="relative z-10 flex flex-col items-center gap-6">
+          <div
+            class="w-32 h-32 rounded-full bg-green-500 border-4 border-green-300 flex items-center justify-center text-5xl text-black shadow-[0_0_40px_rgba(34,197,94,0.5)]"
+          >
+            5
+          </div>
+          <span class="text-4xl font-bold text-green-400">Money</span>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="flex flex-col items-center justify-center bg-[#050505] text-center p-20"
+    >
+      <div
+        class="text-[40px] text-slate-600 font-mono line-through decoration-red-500 decoration-8 mb-12 bg-slate-900 p-8 rounded-2xl border border-slate-800"
+      >
+        [Subject] + [Lighting] + [Camera Lens] + [Style] + --ar 16:9 --v 6.0
+      </div>
+
+      <div
+        class="flex items-center gap-8 bg-slate-800 p-8 rounded-full border-2 border-ai-gold shadow-[0_0_30px_rgba(251,191,36,0.2)] mb-20"
+      >
+        <span class="text-[45px] font-bold text-white px-6">Tell ChatGPT</span>
+        <span class="text-3xl text-ai-gold">➔</span>
+        <span class="text-[45px] font-bold text-white px-6">Get Prompt</span>
+        <span class="text-3xl text-ai-gold">➔</span>
+        <span class="text-[45px] font-bold text-white px-6">Paste</span>
+        <span class="text-3xl text-ai-gold">➔</span>
+        <span class="text-[45px] font-bold text-green-400 px-6">Done</span>
+      </div>
+
+      <h1 class="text-[75px] font-black text-white leading-tight">
+        No Memorization. No Formulas. <br /><span class="text-ai-gold"
+          >ChatGPT Does That Part.</span
+        >
+      </h1>
+    </section>
+
+    <section
+      class="flex flex-col items-center justify-center bg-cinematic p-20"
+    >
+      <h2
+        class="text-[60px] font-bold text-slate-400 mb-16 tracking-widest uppercase"
+      >
+        Everything You Need to Start
+      </h2>
+      <ul class="space-y-12">
+        <li class="text-[70px] font-black text-white flex items-center">
+          <span class="text-ai-gold mr-8">✦</span> Device + Internet
+        </li>
+        <li class="text-[70px] font-black text-white flex items-center">
+          <span class="text-ai-gold mr-8">✦</span> Free ChatGPT Account
+        </li>
+        <li class="text-[70px] font-black text-white flex items-center">
+          <span class="text-ai-gold mr-8">✦</span> Willingness to Practice
+        </li>
+      </ul>
+    </section>
+
+    <section class="relative flex flex-col justify-center p-24 text-left">
+      <img
+        src="images/slide19-sunrise.jpg"
+        class="absolute inset-0 w-full h-full object-cover opacity-60 bg-slate-800"
+      />
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent"
+      ></div>
+      <div class="relative z-10 space-y-6 max-w-[1300px]">
+        <h1
+          class="text-[85px] font-black text-white leading-tight drop-shadow-lg"
+        >
+          The Skill Is Available.<br />
+          The Market Is Open.<br />
+          <span class="text-orange-400 gold-glow">You Are Here Early.</span>
+        </h1>
+      </div>
+    </section>
+
+    <section
+      class="flex flex-col items-center justify-center text-center relative overflow-hidden bg-[#fbbf24]"
+    >
+      <div
+        class="absolute inset-0 opacity-10"
+        style="
+          background-image: repeating-linear-gradient(
+            45deg,
+            #000 0,
+            #000 2px,
+            transparent 2px,
+            transparent 20px
+          );
+        "
+      ></div>
+      <div
+        class="relative z-10 bg-black text-white px-24 py-16 rounded-[4rem] shadow-2xl border-4 border-black"
+      >
+        <h2
+          class="text-[50px] font-bold text-slate-400 mb-6 uppercase tracking-widest"
+        >
+          Chapter 1 Complete
+        </h2>
+        <h1 class="text-[100px] font-black text-white leading-none">
+          Up Next — <br /><span class="text-ai-gold">The Full AI Toolkit.</span>
+        </h1>
+      </div>
+    </section>
+  </body>
+</html>
