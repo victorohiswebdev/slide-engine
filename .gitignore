@@ -27,8 +27,13 @@ flyer-masterclass*
 madonna-day2-carousel.html
 render_madonna_day2.py
 gen_class*.py
+gen_*.py
 generate_concept_cards.py
+generate_pyppeteer.py
 slide-deck-fyp-viva*
+slide-deck-masterclass*
+images/concept-cards/
+images/report/
 
 # Scratch
 _*
